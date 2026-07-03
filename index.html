@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>海悟研发中心 · 新员工入职须知</title>
+<style>
+/* ==================== CSS Reset & Variables ==================== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#2F6BFF;
+  --primary-light:#E8F0FF;
+  --primary-dark:#1a4fd4;
+  --bg:#F7F9FC;
+  --surface:#FFFFFF;
+  --text:#1a1a2e;
+  --text-secondary:#5a6275;
+  --text-muted:#8b92a8;
+  --border:#e3e8f0;
+  --border-light:#eef1f6;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.06);
+  --shadow:0 2px 12px rgba(0,0,0,0.08);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.12);
+  --radius:12px;
+  --radius-sm:8px;
+  --radius-lg:16px;
+  --sidebar-width:300px;
+  --header-height:64px;
+  --code-bg:#f5f7fa;
+  --code-border:#e0e4ea;
+  --tip-bg:#ecfdf5;--tip-border:#10b981;--tip-text:#065f46;
+  --warn-bg:#fffbeb;--warn-border:#f59e0b;--warn-text:#92400e;
+  --info-bg:#eff6ff;--info-border:#3b82f6;--info-text:#1e40af;
+  --danger-bg:#fef2f2;--danger-border:#ef4444;--danger-text:#991b1b;
+  --important-bg:#f5f3ff;--important-border:#8b5cf6;--important-text:#5b21b6;
+}
+[data-theme="dark"]{
+  --primary:#4d83ff;
+  --primary-light:#1a2845;
+  --bg:#0f1117;
+  --surface:#1a1d27;
+  --text:#e4e7ef;
+  --text-secondary:#a0a8c0;
+  --text-muted:#6b7280;
+  --border:#2a2e3a;
+  --border-light:#232733;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);
+  --shadow:0 2px 12px rgba(0,0,0,0.4);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.5);
+  --code-bg:#161922;
+  --code-border:#2a2e3a;
+  --tip-bg:#0d2818;--tip-border:#10b981;--tip-text:#6ee7b7;
+  --warn-bg:#2a1f08;--warn-border:#f59e0b;--warn-text:#fcd34d;
+  --info-bg:#0d1f3a;--info-border:#3b82f6;--info-text:#93c5fd;
+  --danger-bg:#2a1010;--danger-border:#ef4444;--danger-text:#fca5a5;
+  --important-bg:#1f1430;--important-border:#8b5cf6;--important-text:#c4b5fd;
+}
+
+/* ==================== Base ==================== */
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.8;
+  font-size:15px;
+  transition:background .3s,color .3s;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ==================== Header ==================== */
+.header{
+  position:fixed;top:0;left:0;right:0;height:var(--header-height);
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:16px;
+  padding:0 24px;z-index:1000;
+  box-shadow:var(--shadow-sm);
+}
+.header-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.header-logo .logo-icon{
+  width:36px;height:36px;border-radius:10px;
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:700;font-size:16px;
+}
+.header-logo .logo-text{font-weight:700;font-size:16px;color:var(--text);white-space:nowrap}
+.header-search{
+  flex:1;max-width:480px;position:relative;
+}
+.header-search input{
+  width:100%;height:38px;border-radius:10px;
+  border:1px solid var(--border);background:var(--bg);
+  padding:0 16px 0 40px;font-size:14px;color:var(--text);
+  outline:none;transition:border-color .2s,box-shadow .2s;
+}
+.header-search input:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-light)}
+.header-search .search-icon{
+  position:absolute;left:13px;top:50%;transform:translateY(-50%);
+  width:16px;height:16px;color:var(--text-muted);pointer-events:none;
+}
+.header-search .search-kbd{
+  position:absolute;right:10px;top:50%;transform:translateY(-50%);
+  font-size:11px;color:var(--text-muted);
+  background:var(--surface);border:1px solid var(--border);
+  padding:2px 6px;border-radius:4px;pointer-events:none;
+}
+.header-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.header-btn{
+  width:38px;height:38px;border-radius:10px;border:1px solid var(--border);
+  background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;
+  color:var(--text-secondary);transition:all .2s;
+}
+.header-btn:hover{background:var(--bg);border-color:var(--primary);color:var(--primary)}
+.header-btn svg{width:18px;height:18px}
+.header-btn .mobile-label{display:none}
+
+/* Mobile menu toggle */
+.mobile-menu-btn{display:none}
+
+/* ==================== Layout ==================== */
+.layout{display:flex;padding-top:var(--header-height)}
+.sidebar{
+  position:fixed;left:0;top:var(--header-height);bottom:0;
+  width:var(--sidebar-width);background:var(--surface);
+  border-right:1px solid var(--border);
+  overflow-y:auto;overflow-x:hidden;
+  z-index:900;transition:transform .3s;
+}
+.sidebar::-webkit-scrollbar{width:6px}
+.sidebar::-webkit-scrollbar-track{background:transparent}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+.sidebar::-webkit-scrollbar-thumb:hover{background:var(--text-muted)}
+
+.main-content{
+  margin-left:var(--sidebar-width);flex:1;
+  padding:32px 48px 80px;max-width:calc(100% - var(--sidebar-width));
+  min-width:0;
+}
+
+/* ==================== Sidebar Nav ==================== */
+.nav-section{margin-bottom:4px}
+.nav-section-title{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 20px 8px;font-size:12px;font-weight:600;
+  color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;
+  cursor:pointer;user-select:none;
+}
+.nav-section-title .toggle-arrow{
+  transition:transform .2s;width:14px;height:14px;display:flex;align-items:center;justify-content:center;
+}
+.nav-section.collapsed .toggle-arrow{transform:rotate(-90deg)}
+.nav-section.collapsed .nav-children{max-height:0;overflow:hidden;opacity:0}
+.nav-children{max-height:2000px;overflow:hidden;opacity:1;transition:max-height .3s,opacity .2s}
+.nav-item{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 20px 7px 36px;font-size:13.5px;
+  color:var(--text-secondary);cursor:pointer;
+  border-left:3px solid transparent;
+  transition:all .15s;line-height:1.5;
+  text-decoration:none;
+}
+.nav-item:hover{background:var(--bg);color:var(--primary)}
+.nav-item.active{
+  background:var(--primary-light);color:var(--primary);
+  border-left-color:var(--primary);font-weight:600;
+}
+.nav-item .nav-num{font-size:11px;color:var(--text-muted);min-width:20px}
+.nav-item.active .nav-num{color:var(--primary)}
+
+/* ==================== Content Typography ==================== */
+.content-wrapper{max-width:860px;margin:0 auto}
+.doc-header{
+  margin-bottom:40px;padding-bottom:28px;border-bottom:2px solid var(--border);
+}
+.doc-header .doc-meta{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;color:var(--primary);background:var(--primary-light);
+  padding:4px 12px;border-radius:20px;font-weight:600;margin-bottom:16px;
+}
+.doc-header h1{font-size:32px;font-weight:700;color:var(--text);margin-bottom:8px;letter-spacing:-.5px}
+.doc-header .doc-subtitle{font-size:15px;color:var(--text-secondary)}
+.doc-header .doc-info{display:flex;gap:24px;margin-top:16px;flex-wrap:wrap}
+.doc-header .doc-info span{font-size:13px;color:var(--text-muted);display:flex;align-items:center;gap:6px}
+
+section.doc-section{margin-bottom:48px;scroll-margin-top:80px}
+.doc-section > h2{
+  font-size:24px;font-weight:700;color:var(--text);
+  margin-bottom:20px;padding-bottom:12px;
+  border-bottom:1px solid var(--border-light);
+  display:flex;align-items:center;gap:10px;cursor:pointer;
+  user-select:none;
+}
+.doc-section > h2 .section-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:32px;height:32px;border-radius:8px;
+  background:var(--primary);color:#fff;font-size:15px;
+  font-weight:700;flex-shrink:0;
+}
+.doc-section > h2 .collapse-icon{
+  margin-left:auto;width:20px;height:20px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text-muted);transition:transform .2s;
+}
+.doc-section.collapsed .collapse-icon{transform:rotate(-90deg)}
+.doc-section.collapsed .section-content{display:none}
+.section-content{overflow:hidden;transition:all .3s}
+
+h3.sub-heading{
+  font-size:18px;font-weight:600;color:var(--text);
+  margin:28px 0 14px;padding-left:12px;
+  border-left:3px solid var(--primary);
+  scroll-margin-top:80px;
+}
+h4.sub-sub-heading{
+  font-size:15px;font-weight:600;color:var(--text);
+  margin:20px 0 10px;scroll-margin-top:80px;
+}
+p{margin-bottom:12px;color:var(--text)}
+ul,ol{margin:8px 0 16px 20px}
+li{margin-bottom:6px;line-height:1.8}
+strong{color:var(--text);font-weight:600}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ==================== Callout Boxes ==================== */
+.callout{
+  margin:16px 0;padding:14px 16px 14px 48px;
+  border-radius:var(--radius-sm);font-size:14px;line-height:1.7;
+  position:relative;border:1px solid;
+}
+.callout::before{
+  content:'';position:absolute;left:14px;top:14px;
+  width:20px;height:20px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;color:#fff;
+}
+.callout-title{font-weight:700;margin-bottom:4px;display:block}
+.callout.tip{background:var(--tip-bg);border-color:var(--tip-border);color:var(--tip-text)}
+.callout.tip::before{content:'✓';background:var(--tip-border)}
+.callout.warn{background:var(--warn-bg);border-color:var(--warn-border);color:var(--warn-text)}
+.callout.warn::before{content:'!';background:var(--warn-border)}
+.callout.info{background:var(--info-bg);border-color:var(--info-border);color:var(--info-text)}
+.callout.info::before{content:'i';background:var(--info-border);font-style:italic;font-family:serif}
+.callout.danger{background:var(--danger-bg);border-color:var(--danger-border);color:var(--danger-text)}
+.callout.danger::before{content:'✕';background:var(--danger-border);font-size:10px}
+.callout.important{background:var(--important-bg);border-color:var(--important-border);color:var(--important-text)}
+.callout.important::before{content:'★';background:var(--important-border);font-size:11px}
+
+/* ==================== Tables ==================== */
+.table-wrapper{overflow-x:auto;margin:16px 0;border-radius:var(--radius-sm);border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--surface)}
+thead{background:var(--primary-light)}
+th{padding:12px 14px;text-align:left;font-weight:600;color:var(--primary);white-space:nowrap;border-bottom:1px solid var(--border)}
+td{padding:10px 14px;border-bottom:1px solid var(--border-light);color:var(--text-secondary);vertical-align:top}
+tbody tr:hover{background:var(--bg)}
+tbody tr:last-child td{border-bottom:none}
+
+/* ==================== Code Blocks ==================== */
+.code-block{
+  margin:16px 0;border-radius:var(--radius-sm);
+  background:var(--code-bg);border:1px solid var(--code-border);
+  overflow:hidden;
+}
+.code-block .code-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 16px;background:var(--surface);
+  border-bottom:1px solid var(--border);font-size:12px;
+}
+.code-block .code-lang{color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.code-block .copy-btn{
+  border:none;background:none;cursor:pointer;color:var(--text-muted);
+  font-size:12px;padding:4px 8px;border-radius:4px;transition:all .2s;
+}
+.code-block .copy-btn:hover{background:var(--bg);color:var(--primary)}
+.code-block pre{padding:16px;overflow-x:auto;font-size:13px;line-height:1.6}
+.code-block pre::-webkit-scrollbar{height:6px}
+.code-block pre::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+code{font-family:"Fira Code","SF Mono","Consolas","Monaco",monospace}
+:not(pre)>code{
+  background:var(--code-bg);padding:2px 6px;border-radius:4px;
+  font-size:13px;border:1px solid var(--code-border);color:var(--primary);
+}
+
+/* Syntax highlighting */
+.tk-keyword{color:#c678dd;font-weight:600}
+.tk-string{color:#98c379}
+.tk-number{color:#d19a66}
+.tk-comment{color:#7f8c8d;font-style:italic}
+.tk-tag{color:#e06c75}
+.tk-attr{color:#d19a66}
+.tk-fn{color:#61afef}
+
+/* ==================== Mermaid-like Diagram ==================== */
+.diagram-container{
+  margin:20px 0;padding:24px;border-radius:var(--radius);
+  background:var(--surface);border:1px solid var(--border);
+  box-shadow:var(--shadow-sm);overflow-x:auto;
+}
+.diagram-title{text-align:center;font-size:14px;font-weight:600;color:var(--text-secondary);margin-bottom:16px}
+.flow-diagram{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap}
+.flow-node{
+  padding:12px 20px;border-radius:10px;font-size:13px;font-weight:600;
+  text-align:center;min-width:120px;transition:transform .2s;
+}
+.flow-node:hover{transform:scale(1.05)}
+.flow-node.primary{background:var(--primary);color:#fff}
+.flow-node.secondary{background:var(--primary-light);color:var(--primary);border:1px solid var(--primary)}
+.flow-node.success{background:#d1fae5;color:#065f46;border:1px solid #10b981}
+.flow-node.warn{background:#fef3c7;color:#92400e;border:1px solid #f59e0b}
+.flow-arrow{width:40px;height:2px;background:var(--border);position:relative;flex-shrink:0;margin:0 4px}
+.flow-arrow::after{
+  content:'';position:absolute;right:-1px;top:50%;transform:translateY(-50%);
+  width:0;height:0;border-left:8px solid var(--border);
+  border-top:5px solid transparent;border-bottom:5px solid transparent;
+}
+.org-tree{text-align:center}
+.org-tree .org-level{display:flex;justify-content:center;gap:12px;margin:12px 0;flex-wrap:wrap}
+.org-tree .org-node{
+  padding:10px 18px;border-radius:8px;font-size:13px;font-weight:600;
+  background:var(--surface);border:2px solid var(--primary);color:var(--primary);
+  box-shadow:var(--shadow-sm);
+}
+.org-tree .org-node.root{background:var(--primary);color:#fff}
+.org-tree .org-connector{width:2px;height:20px;background:var(--border);margin:0 auto}
+
+/* ==================== Cards ==================== */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:16px 0}
+.info-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:20px;transition:all .2s;
+}
+.info-card:hover{box-shadow:var(--shadow);border-color:var(--primary);transform:translateY(-2px)}
+.info-card .card-icon{
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;margin-bottom:12px;
+}
+.info-card h4{font-size:15px;font-weight:600;margin-bottom:6px;color:var(--text)}
+.info-card p{font-size:13px;color:var(--text-secondary);margin-bottom:0}
+
+/* ==================== Image Zoom ==================== */
+.img-container{margin:16px 0;text-align:center;cursor:zoom-in}
+.img-container img{max-width:100%;border-radius:var(--radius-sm);box-shadow:var(--shadow)}
+.image-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.85);
+  display:none;align-items:center;justify-content:center;
+  z-index:9999;cursor:zoom-out;padding:40px;
+}
+.image-overlay.active{display:flex}
+.image-overlay img{max-width:90%;max-height:90%;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,.5)}
+
+/* ==================== Back to Top ==================== */
+.back-to-top{
+  position:fixed;bottom:32px;right:32px;
+  width:44px;height:44px;border-radius:50%;
+  background:var(--primary);color:#fff;border:none;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow-lg);opacity:0;visibility:hidden;
+  transition:all .3s;z-index:800;
+}
+.back-to-top.visible{opacity:1;visibility:visible}
+.back-to-top:hover{transform:translateY(-4px);background:var(--primary-dark)}
+
+/* ==================== Search Results ==================== */
+.search-highlight{background:#fff3a0;border-radius:3px;padding:0 2px}
+[data-theme="dark"] .search-highlight{background:#665f1a;color:#fbbf24}
+.search-hidden{display:none!important}
+
+/* ==================== Print ==================== */
+@media print{
+  .header,.sidebar,.back-to-top,.image-overlay,.header-search,.header-actions{display:none!important}
+  .main-content{margin:0!important;padding:0!important;max-width:100%!important}
+  body{background:#fff;color:#000;font-size:12pt}
+  .doc-section{page-break-inside:avoid}
+  .doc-section > h2{page-break-after:avoid}
+  .callout{border:1px solid #ccc!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  table{font-size:10pt}
+  .section-content{display:block!important}
+  .doc-section.collapsed .section-content{display:block!important}
+}
+
+/* ==================== Mobile ==================== */
+@media(max-width:900px){
+  :root{--sidebar-width:280px}
+  .header{padding:0 12px;gap:8px}
+  .header-logo .logo-text{display:none}
+  .header-search{max-width:none}
+  .header-search .search-kbd{display:none}
+  .mobile-menu-btn{
+    display:flex;width:38px;height:38px;border-radius:10px;
+    border:1px solid var(--border);background:var(--surface);
+    align-items:center;justify-content:center;cursor:pointer;
+    color:var(--text-secondary);flex-shrink:0;
+  }
+  .sidebar{transform:translateX(-100%);box-shadow:var(--shadow-lg)}
+  .sidebar.open{transform:translateX(0)}
+  .main-content{padding:20px 16px 60px;max-width:100%}
+  .doc-header h1{font-size:24px}
+  .doc-section > h2{font-size:20px}
+  .header-btn .btn-text{display:none}
+  .card-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .header-search input{font-size:13px}
+  .doc-header h1{font-size:20px}
+  table{font-size:12px}
+  th,td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== Header ==================== -->
+<header class="header">
+  <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="菜单">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+  </button>
+  <div class="header-logo">
+    <div class="logo-icon">海</div>
+    <div class="logo-text">研发中心 · 入职须知</div>
+  </div>
+  <div class="header-search">
+    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="searchInput" placeholder="搜索文档内容…" autocomplete="off">
+    <span class="search-kbd">Ctrl+F</span>
+  </div>
+  <div class="header-actions">
+    <button class="header-btn" onclick="window.print()" title="打印" aria-label="打印">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
+    </button>
+    <button class="header-btn" id="themeToggle" title="切换深浅色" aria-label="切换主题">
+      <svg id="iconLight" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      <svg id="iconDark" style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ==================== Layout ==================== -->
+<div class="layout">
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar">
+    <div class="nav-section" data-section="company">
+      <div class="nav-section-title" onclick="toggleNavSection(this)">
+        <span>公司介绍</span>
+        <span class="toggle-arrow"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></span>
+      </div>
+      <div class="nav-children">
+        <a class="nav-item" href="#sec-company-overview"><span class="nav-num">1.1</span>公司背景和历史</a>
+        <a class="nav-item" href="#sec-company-strategy"><span class="nav-num">1.2</span>公司战略及形象</a>
+        <a class="nav-item" href="#sec-company-culture"><span class="nav-num">1.3</span>公司文化和价值观</a>
+        <a class="nav-item" href="#sec-company-org"><span class="nav-num">1.4</span>组织结构和业务范围</a>
+      </div>
+    </div>
+    <div class="nav-section" data-section="dept">
+      <div class="nav-section-title" onclick="toggleNavSection(this)">
+        <span>部门概述</span>
+        <span class="toggle-arrow"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></span>
+      </div>
+      <div class="nav-children">
+        <a class="nav-item" href="#sec-dept-org"><span class="nav-num">2.1</span>研发中心组织架构</a>
+        <a class="nav-item" href="#sec-dept-resp"><span class="nav-num">2.2</span>部门职责和功能</a>
+        <a class="nav-item" href="#sec-dept-internal"><span class="nav-num">2.3</span>内部对接窗口</a>
+        <a class="nav-item" href="#sec-dept-external"><span class="nav-num">2.4</span>外部联络窗口</a>
+      </div>
+    </div>
+    <div class="nav-section" data-section="process">
+      <div class="nav-section-title" onclick="toggleNavSection(this)">
+        <span>常用流程与系统</span>
+        <span class="toggle-arrow"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></span>
+      </div>
+      <div class="nav-children">
+        <a class="nav-item" href="#sec-process-query"><span class="nav-num">3.1</span>流程制度查询</a>
+        <a class="nav-item" href="#sec-process-rd"><span class="nav-num">3.2</span>研发常用制度流程</a>
+        <a class="nav-item" href="#sec-process-systems"><span class="nav-num">3.3</span>研发主要涉及系统</a>
+        <a class="nav-item" href="#sec-process-standards"><span class="nav-num">3.4</span>研发设计标准</a>
+      </div>
+    </div>
+    <div class="nav-section" data-section="performance">
+      <div class="nav-section-title" onclick="toggleNavSection(this)">
+        <span>岗位职责与绩效</span>
+        <span class="toggle-arrow"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></span>
+      </div>
+      <div class="nav-children">
+        <a class="nav-item" href="#sec-perf-duty"><span class="nav-num">4.1</span>岗位职责</a>
+        <a class="nav-item" href="#sec-perf-eval"><span class="nav-num">4.2</span>绩效评估流程</a>
+        <a class="nav-item" href="#sec-perf-dev"><span class="nav-num">4.3</span>职业晋升发展</a>
+      </div>
+    </div>
+    <div class="nav-section" data-section="management">
+      <div class="nav-section-title" onclick="toggleNavSection(this)">
+        <span>管理制度介绍</span>
+        <span class="toggle-arrow"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></span>
+      </div>
+      <div class="nav-children">
+        <a class="nav-item" href="#sec-mgmt-probation"><span class="nav-num">5.1</span>试用期管理</a>
+        <a class="nav-item" href="#sec-mgmt-attendance"><span class="nav-num">5.2</span>考勤管理</a>
+        <a class="nav-item" href="#sec-mgmt-leave"><span class="nav-num">5.3</span>假期管理</a>
+        <a class="nav-item" href="#sec-mgmt-benefits"><span class="nav-num">5.4</span>福利标准</a>
+        <a class="nav-item" href="#sec-mgmt-perf"><span class="nav-num">5.5</span>绩效管理</a>
+        <a class="nav-item" href="#sec-mgmt-discipline"><span class="nav-num">5.6</span>员工纪律</a>
+        <a class="nav-item" href="#sec-mgmt-talent"><span class="nav-num">5.7</span>人才积分管理</a>
+        <a class="nav-item" href="#sec-mgmt-expense"><span class="nav-num">5.8</span>费用管理</a>
+        <a class="nav-item" href="#sec-mgmt-invoice"><span class="nav-num">5.9</span>发票管理</a>
+        <a class="nav-item" href="#sec-mgmt-quick"><span class="nav-num">5.10</span>快捷查询</a>
+      </div>
+    </div>
+    <div class="nav-section" data-section="daily">
+      <div class="nav-section-title" onclick="toggleNavSection(this)">
+        <span>日常工作规范</span>
+        <span class="toggle-arrow"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></span>
+      </div>
+      <div class="nav-children">
+        <a class="nav-item" href="#sec-daily-email"><span class="nav-num">6.1</span>邮件收发要求</a>
+        <a class="nav-item" href="#sec-daily-travel"><span class="nav-num">6.2</span>出差相关要求</a>
+        <a class="nav-item" href="#sec-daily-hours"><span class="nav-num">6.3</span>工时填报要求</a>
+        <a class="nav-item" href="#sec-daily-ppt"><span class="nav-num">6.4</span>PPT资料规范</a>
+      </div>
+    </div>
+    <div class="nav-section" data-section="other">
+      <div class="nav-section-title" onclick="toggleNavSection(this)">
+        <span>其他事项</span>
+        <span class="toggle-arrow"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></span>
+      </div>
+      <div class="nav-children">
+        <a class="nav-item" href="#sec-other-life"><span class="nav-num">7.1</span>生活指引</a>
+        <a class="nav-item" href="#sec-other-worktime"><span class="nav-num">7.2</span>上班时间</a>
+        <a class="nav-item" href="#sec-other-email"><span class="nav-num">7.3</span>邮箱及电脑设置</a>
+        <a class="nav-item" href="#sec-other-supplies"><span class="nav-num">7.4</span>办公用品</a>
+        <a class="nav-item" href="#sec-other-assets"><span class="nav-num">7.5</span>物资领用</a>
+        <a class="nav-item" href="#sec-other-notes"><span class="nav-num">7.6</span>其他注意事项</a>
+      </div>
+    </div>
+    <div class="nav-section" data-section="faq">
+      <div class="nav-section-title" onclick="toggleNavSection(this)">
+        <span>常见问题 FAQ</span>
+        <span class="toggle-arrow"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></span>
+      </div>
+      <div class="nav-children">
+        <a class="nav-item" href="#sec-faq"><span class="nav-num">8</span>常见问题</a>
+      </div>
+    </div>
+    <div class="nav-section" data-section="contact">
+      <div class="nav-section-title" onclick="toggleNavSection(this)">
+        <span>联系方式</span>
+        <span class="toggle-arrow"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></span>
+      </div>
+      <div class="nav-children">
+        <a class="nav-item" href="#sec-contact"><span class="nav-num">9</span>常用联系人</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="content-wrapper">
+
+      <!-- Doc Header -->
+      <div class="doc-header">
+        <span class="doc-meta">研发中心 · 内部知识库</span>
+        <h1>新员工入职须知</h1>
+        <p class="doc-subtitle">海悟研发中心 · 新员工入职指南知识库</p>
+        <div class="doc-info">
+          <span>📅 发布日期：2026年04月01日</span>
+          <span>🏢 适用范围：研发中心全体新员工</span>
+          <span>📄 版本：V1.0</span>
+        </div>
+      </div>
+
+      <!-- ===== Section 1: 公司介绍 ===== -->
+      <section class="doc-section" id="sec-company">
+        <h2 onclick="toggleSection(this)"><span class="section-num">1</span>公司介绍<span class="collapse-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span></h2>
+        <div class="section-content">
+
+          <h3 class="sub-heading" id="sec-company-overview">公司背景和历史</h3>
+          <p>海悟初创于1995年，专注于专业场景数字能源和清洁能源解决方案及解决方案定义的产品与服务。是全国冷冻空调设备标准化技术委员会委员、中国制冷空调工业协会副理事长单位；中国通信标准化协会全权会员、中国通信企业协会理事单位；中国工程建设标准化协会副主任委员单位；英国工程技术学会（IET）会员。</p>
+          <p>公司深耕咨询、设计、联合开发、机电总包、测试认证、综合代维、优化升级全价值链垂直整合，致力于为数据中心、通信基站、供暖、储能等场景提供解决方案及产品与服务。服务于通信、互联网、电力、石油、政府、金融、教育、医疗、交通等行业客户。荣获国家级工业产品绿色设计示范企业、广东省高效节能特种空调工程技术研究中心、广东省企业技术中心等国家级、省级荣誉。</p>
+
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="card-icon" style="background:var(--primary-light);color:var(--primary)">🏛️</div>
+              <h4>1995年创立</h4>
+              <p>近30年行业深耕经验</p>
+            </div>
+            <div class="info-card">
+              <div class="card-icon" style="background:#fef3c7;color:#f59e0b">🏭</div>
+              <h4>4大场景</h4>
+              <p>数据中心·通信基站·储能温控·清洁能源</p>
+            </div>
+            <div class="info-card">
+              <div class="card-icon" style="background:#d1fae5;color:#10b981">📦</div>
+              <h4>10大产品线</h4>
+              <p>全价值链垂直整合</p>
+            </div>
+            <div class="info-card">
+              <div class="card-icon" style="background:#ede9fe;color:#8b5cf6">🏆</div>
+              <h4>多项荣誉</h4>
+              <p>国家级·省级技术中心</p>
+            </div>
+          </div>
+
+          <h3 class="sub-heading" id="sec-company-strategy">公司战略及形象</h3>
+          <div class="callout important">
+            <span class="callout-title">使命</span>
+            引领数字能源和清洁能源新技术，创造绿色智能新环境
+          </div>
+          <div class="callout info">
+            <span class="callout-title">愿景</span>
+            致力于成为数字能源和清洁能源解决方案及产品与服务领跑者
+          </div>
+          <div class="callout tip">
+            <span class="callout-title">价值观</span>
+            以客户为中心，以目标为导向，以奋斗者为本
+          </div>
+          <div class="card-grid">
+            <div class="info-card" style="border-left:4px solid var(--primary)">
+              <h4>品牌形象</h4>
+              <p>科技 · 品质 · 省心</p>
+            </div>
+            <div class="info-card" style="border-left:4px solid #10b981">
+              <h4>产品形象</h4>
+              <p>高能效 · 可靠 · 智能</p>
+            </div>
+          </div>
+
+          <h3 class="sub-heading" id="sec-company-culture">公司文化和价值观</h3>
+
+          <div class="callout important">
+            <span class="callout-title">彼此充分认同、思想高度统一、步调绝对一致</span>
+            一个海悟，一个思想，一个声音，一个步调。目标和制度要不折不扣地执行；事项一经决策，只考虑如何实施、落地，并按时按质完成；只为成功找方法，不为失败找借口；不私下散播负面言论。
+          </div>
+
+          <h4 class="sub-sub-heading">凝心聚力、争做一流、共创价值</h4>
+          <ul>
+            <li>走进行业一流圈子，聚焦、吃透、做实；传、帮、带、扶，相互成就</li>
+            <li>以客户为中心，为客户创造价值、为企业创造价值、为员工创造价值</li>
+          </ul>
+
+          <h4 class="sub-sub-heading">坚守艰苦奋斗、坚守自主创新</h4>
+          <ul>
+            <li>幸福生活是奋斗出来的；不做思想上的懒汉，要有建立标杆的意识和超越标杆的意志</li>
+            <li>掌握核心技术；持续满足客户需求，持续增强客户满意；企业健康、持续发展</li>
+          </ul>
+
+          <h4 class="sub-sub-heading">成绩和素养是身份的体现</h4>
+          <ul>
+            <li>对做出突出贡献、创造增量价值的团队或个人及时奖励</li>
+            <li>对有损公司形象、声誉和利益的行为，坚决处理；结果导向，神圣不可侵犯</li>
+          </ul>
+
+          <div class="callout warn">
+            <span class="callout-title">忠诚、干净、担当</span>
+            <strong>忠诚：</strong>忠于海悟，公司利益大于一切；<strong>干净：</strong>洁身自好，有自己独立思想；<strong>担当：</strong>责任意识，事情到我为止。
+          </div>
+
+          <div class="callout tip">
+            <span class="callout-title">日事日毕，日清日高</span>
+            实行任务工作制，当日任务按时按质完成。遵循 P(计划) → D(执行) → C(检查) → A(改善) 循环。
+          </div>
+
+          <h3 class="sub-heading" id="sec-company-org">组织结构和业务范围</h3>
+          <p>公司组织结构参考入职培训组织架构。公司聚焦4大场景和10大产品线：</p>
+
+          <div class="diagram-container">
+            <div class="diagram-title">海悟业务场景与产品线</div>
+            <div class="org-tree">
+              <div class="org-level"><div class="org-node root">海悟科技</div></div>
+              <div class="org-connector"></div>
+              <div class="org-level">
+                <div class="org-node">数据中心场景</div>
+                <div class="org-node">通信基站场景</div>
+                <div class="org-node">储能温控场景</div>
+                <div class="org-node">清洁能源场景</div>
+              </div>
+              <div class="org-connector"></div>
+              <div class="org-level" style="font-size:12px;color:var(--text-muted);max-width:600px;text-align:center">
+                解决方案 · 解决方案服务 · 数据中心解决方案产品 · 机房空调 · 数据中心液冷 · 基站解决方案产品 · 基站空调 · 智能电气产品 · 储能及机柜空调 · 解决方案产品及设备产品服务
+              </div>
+            </div>
+          </div>
+
+          <div class="callout info">
+            <span class="callout-title">公司主要产品介绍存放位置</span>
+            企业微信微盘 → 产品营销推广资料库 → 00公司整体推广资料 → 00公司画册资料。因容量问题，部分同事可能无产品营销推广资料库访问权限，集团综合画册可从附件查看，如需其他内容可联系部门质量运营或市场营销中心同事咨询。
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Section 2: 部门概述 ===== -->
+      <section class="doc-section" id="sec-dept">
+        <h2 onclick="toggleSection(this)"><span class="section-num">2</span>部门概述<span class="collapse-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span></h2>
+        <div class="section-content">
+
+          <h3 class="sub-heading" id="sec-dept-org">研发中心组织架构</h3>
+          <p>研发中心为公司级一级部门，下设11个二级部门：</p>
+
+          <div class="diagram-container">
+            <div class="diagram-title">研发中心组织架构</div>
+            <div class="org-tree">
+              <div class="org-level"><div class="org-node root">研发中心</div></div>
+              <div class="org-connector"></div>
+              <div class="org-level" style="gap:8px">
+                <div class="org-node">质量运营部</div>
+                <div class="org-node">小型温控产品研发部</div>
+                <div class="org-node">中型温控产品研发部</div>
+                <div class="org-node">大型温控产品研发部</div>
+              </div>
+              <div class="org-level" style="gap:8px">
+                <div class="org-node">液冷研发部</div>
+                <div class="org-node">服务器热管理产品研发部</div>
+                <div class="org-node">智能与数据平台部</div>
+                <div class="org-node">电控技术平台部</div>
+              </div>
+              <div class="org-level" style="gap:8px">
+                <div class="org-node">创新研究院</div>
+                <div class="org-node">西安研发分部</div>
+                <div class="org-node">数据中心解决方案产品研发部（虚线管理）</div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="sub-heading" id="sec-dept-resp">所属部门的职责和功能</h3>
+
+          <h4 class="sub-sub-heading">质量运营部（管理部）</h4>
+          <p>优化并实施研发相关的流程和管理制度（《产品开发程序》《工程变更程序》《研发激励制度》等）；监督产品开发活动按相关程序及流程有序高效进行；实施标准化工作，推动产品设计平台化和序列化、提高设计通用化；主导完成专利的申请及维护工作；推动产品及物料降成本工作。</p>
+
+          <h4 class="sub-sub-heading">各产品研发部</h4>
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>部门</th><th>负责产品范围</th></tr></thead>
+              <tbody>
+                <tr><td><strong>小型温控产品研发部</strong></td><td>基站空调、机柜空调、热管空调一体机、小精密（CNA/HDA/CSA）、储能风冷空调、机架等</td></tr>
+                <tr><td><strong>中型温控产品研发部</strong></td><td>房间级机房空调（含氟泵）、列间级机房空调、风墙等</td></tr>
+                <tr><td><strong>大型温控产品研发部</strong></td><td>磁悬浮多联机组、VRM多联机组、储能液冷、双冷源、一体化冷源等</td></tr>
+                <tr><td><strong>液冷产品研发部</strong></td><td>一次侧冷源、CDU、二次侧环网、manifold、储能超充等</td></tr>
+                <tr><td><strong>智能与数据平台部</strong></td><td>智能产品与平台研发、数据资产化与业务赋能、技术运营与商业化支持</td></tr>
+                <tr><td><strong>数据中心解决方案研发部</strong></td><td>基站/机房解决方案及产品（微模块、边缘计算、微型DC舱、一体化机柜、CRAN机房等）、配电及电源产品、监控产品</td></tr>
+                <tr><td><strong>西安研发分部</strong></td><td>大型温控产品研发部中PHU、AHU产品</td></tr>
+                <tr><td><strong>创新研究院</strong></td><td>仿真等创新型产品</td></tr>
+                <tr><td><strong>电控技术平台部</strong></td><td>所有产品电控类技术</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="sub-heading" id="sec-dept-internal">研发中心工作内部对接窗口</h3>
+          <div class="callout tip">联系方式可上企业微信通讯录搜索查找。</div>
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>序号</th><th>二级部门</th><th>联系人</th><th>工作模块</th><th>负责事宜</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>质量运营部</td><td>李琰盛</td><td>整体事务管理协调</td><td>协助部门领导，执行研发中心整体事务、人力资源、项目资源管理协调</td></tr>
+                <tr><td>1</td><td>质量运营部</td><td>梁少锋 / 陈远耀 / 胡茂山</td><td>标准化工作</td><td>研发中心技术标准化、管理标准化的研究和标准的制订、修订、实施、监督、管理</td></tr>
+                <tr><td>1</td><td>质量运营部</td><td>吴宝玲</td><td>数据管理、工程变更管理</td><td>工程变更管理（ECN流程审核）、维护PDM、SAP编码数据等</td></tr>
+                <tr><td>1</td><td>质量运营部</td><td>江海霞 / 周昕</td><td>数据管理、样机仓管理、办公用品申领</td><td>PDM基本流程处理、图纸审批、文件归档、研发领料、办公用品申请、样机仓账务处理、打印机管理等</td></tr>
+                <tr><td>1</td><td>质量运营部</td><td>任雨欣 / 张可心 / 钟佳玲</td><td>项目管理</td><td>协助部门领导，处理研发中心事务、项目管理工作</td></tr>
+                <tr><td>2</td><td>小型温控研发部</td><td>张艳</td><td>小型温控产品研发</td><td>基站空调、机柜空调、热管空调一体机、小精密、储能风冷空调、机架等</td></tr>
+                <tr><td>3</td><td>中型温控研发部</td><td>范轩</td><td>中型温控研发</td><td>房间级机房空调（含氟泵）、列间级机房空调、风墙等</td></tr>
+                <tr><td>4</td><td>大型温控研发部</td><td>谢文科</td><td>大型温控研发</td><td>磁悬浮多联机组、VRM多联机组、储能液冷、双冷源、一体化冷源等</td></tr>
+                <tr><td>5</td><td>液冷产品研发部</td><td>李杰</td><td>液冷设备产品研发</td><td>一次侧冷源、CDU、二次侧环网、manifold、储能超充等</td></tr>
+                <tr><td>6</td><td>智能与数据平台部</td><td>杨伟</td><td>数据价值转化中心</td><td>智能产品与平台研发、数据资产化与业务赋能、技术运营与商业化支持</td></tr>
+                <tr><td>7</td><td>数据中心解决方案研发部</td><td>温泽威</td><td>机房解决方案研发</td><td>基站/机房解决方案及产品、监控产品、配电及电源产品</td></tr>
+                <tr><td>8</td><td>西安研发分部</td><td>王大伟</td><td>平台级产品研发</td><td>大型温控产品研发部中PHU、AHU产品</td></tr>
+                <tr><td>9</td><td>创新研究院</td><td>赵洁霞</td><td>仿真/创新型产品研发</td><td>仿真/创新型产品技术咨询及问题解决</td></tr>
+                <tr><td>10</td><td>电控研发部</td><td>黎祥松</td><td>产品电控技术及控制器研发</td><td>所有空调产品电控类技术咨询及问题解决</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="sub-heading" id="sec-dept-external">外部联络窗口</h3>
+          <h4 class="sub-sub-heading">各部门经管联系人</h4>
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>类型</th><th>部门</th><th>联系人</th></tr></thead>
+              <tbody>
+                <tr><td>前台</td><td>通信事业部</td><td>邱林</td></tr>
+                <tr><td>前台</td><td>金融事业部</td><td>刘祥</td></tr>
+                <tr><td>前台</td><td>大客户事业部</td><td>丁文越</td></tr>
+                <tr><td>前台</td><td>行业渠道事业部</td><td>桑世兴</td></tr>
+                <tr><td>前台</td><td>德装事业部</td><td>陈露</td></tr>
+                <tr><td>前台</td><td>海外事业部</td><td>蔡程旭</td></tr>
+                <tr><td>前台</td><td>解决方案事业部</td><td>曲桂华</td></tr>
+                <tr><td>前台</td><td>液冷事业部</td><td>石纪赞</td></tr>
+                <tr><td>前台</td><td>服务器热管理事业部</td><td>彭俊</td></tr>
+                <tr><td>前台</td><td>省区平台</td><td>詹峰</td></tr>
+                <tr><td>中台</td><td>市场营销中心</td><td>张明洋 / 周洁</td></tr>
+                <tr><td>中台</td><td>制造中心</td><td>胡雪琴 / 罗小铁</td></tr>
+                <tr><td>中台</td><td>采购中心</td><td>丁优</td></tr>
+                <tr><td>中台</td><td>品质中心</td><td>何艳芳</td></tr>
+                <tr><td>中台</td><td>技术服务中心</td><td>谢恩</td></tr>
+                <tr><td>后台</td><td>质量运营中心</td><td>经营管理-詹峰 / 运营管理-何敏</td></tr>
+                <tr><td>后台</td><td>人力资源中心</td><td>曾燕</td></tr>
+                <tr><td>后台</td><td>财务管理中心</td><td>彭勇</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Section 3: 常用流程、系统及设计规范 ===== -->
+      <section class="doc-section" id="sec-process">
+        <h2 onclick="toggleSection(this)"><span class="section-num">3</span>常用流程、系统及设计规范<span class="collapse-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span></h2>
+        <div class="section-content">
+
+          <h3 class="sub-heading" id="sec-process-query">流程制度查询</h3>
+          <div class="callout info">
+            <span class="callout-title">公司级流程制度存放位置</span>
+            OA系统，包括但不局限于体系管理标准、研发管理标准、质量管理标准、制造管理标准、人力资源管理标准等。
+          </div>
+          <div class="callout info">
+            <span class="callout-title">日常流程提交位置</span>
+            PT系统，包括但不局限于立项流程、绩效评估流程、IT账号权限申请流程、会议室预约等。
+          </div>
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>系统</th><th>网址</th><th>用途</th></tr></thead>
+              <tbody>
+                <tr><td><strong>OA系统</strong></td><td>http://oa.haiwu.com</td><td>流程制度查询、公文归档查阅</td></tr>
+                <tr><td><strong>PT系统</strong></td><td>http://pt.haiwu.com</td><td>日常流程提交（立项、绩效、IT权限、会议室预约等）</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout tip">
+            <span class="callout-title">查阅OA公文类文件方法</span>
+            在OA搜索栏中选择"文档"，输入"ISO9001"并搜索，即可查看《ISO9001体系文件清单》，该清单录入了OA中的所有相关文件。
+          </div>
+
+          <h3 class="sub-heading" id="sec-process-rd">研发常用制度流程</h3>
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>制度名称</th><th>主要内容</th><th>文件位置</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><strong>《集成产品开发流程（IPD）》</strong></td>
+                  <td>说明产品设计和开发控制的程序文件，规范公司各职能岗位从需求收集至产品退市全生命周期中的协同运作</td>
+                  <td>OA系统 → 海悟流程 → 运营流程-IPD</td>
+                </tr>
+                <tr>
+                  <td><strong>《工程变更程序》</strong></td>
+                  <td>用于说明公司对于产品变更相关规定；对推出新产品及现有产品的改进，使产品改进在有序状态下实现</td>
+                  <td>OA系统 → 流程制度汇编 → 研发管理标准</td>
+                </tr>
+                <tr>
+                  <td><strong>《产品型号命名指引》</strong></td>
+                  <td>用于说明公司产品命名规则，保证产品命名规范、准确、统一，严谨、清晰界定产品类别及系列</td>
+                  <td>OA系统 → 流程制度汇编 → 研发管理标准</td>
+                </tr>
+                <tr>
+                  <td><strong>《产品软件开发规范》</strong></td>
+                  <td>用于说明产品软件设计和开发的规范文件，规定产品软件设计和开发工作流程、人员职责及要求</td>
+                  <td>OA系统 → 流程制度汇编 → 研发管理标准</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="sub-heading" id="sec-process-systems">研发主要涉及系统</h3>
+
+          <h4 class="sub-sub-heading">PDM系统</h4>
+          <p>PDM的中文名称为产品数据管理（Product Data Management），是一门用来管理所有与产品相关信息（包括零件信息、配置、文档、CAD文件、结构、权限信息等）和所有与产品相关过程（包括过程定义和管理）的技术。通过实施PDM，可以提高生产效率，有利于对产品的全生命周期进行管理，加强对于文档、图纸、数据的高效利用，使工作流程规范化。</p>
+          <div class="callout tip">
+            <span class="callout-title">PDM操作指引查询路径</span>
+            PDM → 协同管理 → 文档管理 → 02部门文档 → 01研发中心管理文档 → 06部门学习材料 → 03 PDM系统操作提示
+          </div>
+
+          <h4 class="sub-sub-heading">SAP系统</h4>
+          <p>SAP起源于Systems Applications and Products in Data Processing，是一款企业管理解决方案软件。SAP可用于下达、记录与查询企业发生的业务（销售订单、采购订单、生产订单、库存的出入库、人员招聘、供应商管理、客户管理等），分析企业的业务数据（资金、库存、销售、生产等多维度分析）。</p>
+          <div class="callout tip">
+            <span class="callout-title">SAP学习资料查询路径</span>
+            PDM → 协同管理 → 文档管理 → 02部门文档 → 01研发中心管理文档 → 06部门学习材料 → 02 SAP系统学习资料
+          </div>
+
+          <div class="diagram-container">
+            <div class="diagram-title">研发日常工作系统流程</div>
+            <div class="flow-diagram">
+              <div class="flow-node primary">需求收集</div>
+              <div class="flow-arrow"></div>
+              <div class="flow-node secondary">OA/PT<br>流程提交</div>
+              <div class="flow-arrow"></div>
+              <div class="flow-node secondary">PDM<br>文档管理</div>
+              <div class="flow-arrow"></div>
+              <div class="flow-node secondary">SAP<br>业务记录</div>
+              <div class="flow-arrow"></div>
+              <div class="flow-node success">交付完成</div>
+            </div>
+          </div>
+
+          <h3 class="sub-heading" id="sec-process-standards">研发设计标准（含产品）</h3>
+          <div class="callout warn">
+            <span class="callout-title">重要</span>
+            公司的规范及企业标准存放在OA及PDM系统中，需要两个系统结合来看。详见《海悟研发标准汇集》。
+          </div>
+
+          <h4 class="sub-sub-heading">OA系统中存放标准查看方式</h4>
+          <ol>
+            <li>打开OA登录界面（http://oa.haiwu.com/），输入个人信息后登录</li>
+            <li>在搜索类别中选择"文档"，输入关键词（文件名、文件代号或其一部分），点击搜索图标</li>
+            <li>如输入"RDM"可搜索研发归档文件；输入"ME"可搜索工艺部归档文件；输入"有害"可搜索ROHS、REACH相关文件</li>
+          </ol>
+
+          <h4 class="sub-sub-heading">PDM系统中存放标准查看方式</h4>
+          <p>PDM系统中主要存放公司企业技术规范及相关产品设计规范，详细涉及清单可查看《海悟研发标准汇集》。</p>
+          <div class="callout tip">
+            <span class="callout-title">PDM查看路径</span>
+            协同管理 → 文档管理 → 04 企业技术规范<br>
+            搜索路径：协同管理 → 文档管理 → 右键"文档工作区" → 选择搜索 → 结合《海悟研发标准汇集》名称进行搜索
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Section 4: 岗位职责和绩效评估 ===== -->
+      <section class="doc-section" id="sec-performance">
+        <h2 onclick="toggleSection(this)"><span class="section-num">4</span>岗位职责和绩效评估<span class="collapse-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span></h2>
+        <div class="section-content">
+
+          <h3 class="sub-heading" id="sec-perf-duty">岗位职责</h3>
+          <div class="callout info">详见岗位画像文档。</div>
+
+          <h3 class="sub-heading" id="sec-perf-eval">目标设定和绩效评估流程</h3>
+
+          <div class="diagram-container">
+            <div class="diagram-title">月度绩效评估流程</div>
+            <div class="flow-diagram">
+              <div class="flow-node primary">PT系统提交<br>月度计划</div>
+              <div class="flow-arrow"></div>
+              <div class="flow-node secondary">上级审批</div>
+              <div class="flow-arrow"></div>
+              <div class="flow-node secondary">提交月度<br>总结</div>
+              <div class="flow-arrow"></div>
+              <div class="flow-node warn">上级考评<br>（评级）</div>
+              <div class="flow-arrow"></div>
+              <div class="flow-node success">季度绩效<br>挂钩</div>
+            </div>
+          </div>
+
+          <div class="callout important">
+            <span class="callout-title">月度绩效时间节点</span>
+            <ul style="margin:4px 0 0">
+              <li>每月 <strong>6号前</strong>：提交当月月度绩效计划表</li>
+              <li>每月 <strong>20号前</strong>：完成上月月度绩效评估表</li>
+              <li>每月15号后新入职员工无需填写，次月启动填写</li>
+              <li>月度绩效不考核，只评级，与季度绩效挂钩</li>
+            </ul>
+          </div>
+
+          <div class="diagram-container">
+            <div class="diagram-title">年度KPI考核流程</div>
+            <div class="flow-diagram">
+              <div class="flow-node primary">年度计划<br>KPI指标制定</div>
+              <div class="flow-arrow"></div>
+              <div class="flow-node secondary">签订年度<br>考核责任书</div>
+              <div class="flow-arrow"></div>
+              <div class="flow-node warn">考评结果<br>公示及面谈</div>
+              <div class="flow-arrow"></div>
+              <div class="flow-node success">年度浮动<br>绩效发放</div>
+            </div>
+          </div>
+
+          <div class="callout tip">职员若认为有不合理之处，找HRBP反馈解决。</div>
+
+          <h3 class="sub-heading" id="sec-perf-dev">发展计划和职业晋升机会</h3>
+          <p>海悟为员工提供双通道职业发展路径，技术族与管理族并行发展：</p>
+
+          <div class="diagram-container">
+            <div class="diagram-title">海悟职业发展双通道</div>
+            <div class="org-tree">
+              <div class="org-level"><div class="org-node root">员工入职</div></div>
+              <div class="org-connector"></div>
+              <div class="org-level" style="gap:40px">
+                <div style="text-align:center">
+                  <div class="org-node" style="border-color:#10b981;color:#10b981">技术族通道</div>
+                  <div style="font-size:12px;color:var(--text-muted);margin-top:8px">初级 → 中级 → 高级 → 专家 → 首席</div>
+                </div>
+                <div style="text-align:center">
+                  <div class="org-node" style="border-color:#f59e0b;color:#f59e0b">管理族通道</div>
+                  <div style="font-size:12px;color:var(--text-muted);margin-top:8px">组长 → 主管 → 经理 → 总监 → VP</div>
+                </div>
+              </div>
+              <div class="org-connector"></div>
+              <div class="org-level">
+                <div class="org-node" style="font-size:12px">技术族横向发展通道</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout info">
+            <span class="callout-title">相关信息路径指引</span>
+            企业微信 → 工作台 → 知识共享平台 → 各部门知识获取，如《关于海悟员工职业发展通道》
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Section 5: 管理制度介绍 ===== -->
+      <section class="doc-section" id="sec-management">
+        <h2 onclick="toggleSection(this)"><span class="section-num">5</span>管理制度介绍<span class="collapse-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span></h2>
+        <div class="section-content">
+
+          <h3 class="sub-heading" id="sec-mgmt-probation">试用期管理规定</h3>
+          <div class="callout important">
+            <span class="callout-title">试用期时长</span>
+            试用期6个月（劳动合同签订），详见OA流程。
+          </div>
+
+          <h4 class="sub-sub-heading">试用期不符合录用条件的情形</h4>
+          <div class="callout danger">
+            <span class="callout-title">以下情形属于不符合录用条件</span>
+            <ul style="margin:4px 0 0">
+              <li>试用期内患病或非因工负伤累计请假达15天以上，医疗期届满</li>
+              <li>从其他单位离职，未依法解除、终止劳动合同或劳动关系的</li>
+              <li>拖欠其他企业或单位公款尚未清偿的</li>
+              <li>伪造身份证、学历、学位证书、职称证书、获奖证书、工作简历和个人信息的</li>
+              <li>个人简历、入职登记表所列内容与真实情况不符的</li>
+              <li>试用期满之前，无法按照公司规定办理入职手续或备齐相关资料的</li>
+              <li>试用期内违反《员工纪律管理制度》应予以记小过及以上行政处分的</li>
+              <li>不能按质按量完成岗位说明书要求的工作任务，或职业技能考察、考核不合格</li>
+              <li>试用期内连续两个月考核得分低于60分或累计平均考核得分低于60分</li>
+              <li>入职后不同意购买社会保险或因员工原因致使公司无法购买社会保险的</li>
+              <li>无法提供健康入职体检证明，患有精神类疾病或法定禁止工作的传染病</li>
+              <li>入职前从事接触职业病危害作业工作但无法提供离岗前职业健康检查证明</li>
+              <li>拒绝公司组织的健康体检或职业健康检查的</li>
+            </ul>
+          </div>
+
+          <h4 class="sub-sub-heading">延期转正情形</h4>
+          <div class="callout warn">
+            <span class="callout-title">员工有以下情况之一的，延长试用考核期</span>
+            <ul style="margin:4px 0 0">
+              <li>入职前3个月内，累计事假超过3个工作日</li>
+              <li>入职前3个月内，累计有薪假（不含病假）超过5个工作日</li>
+              <li>入职前3个月内，累计病假超过7个工作日</li>
+              <li>入职前6个月内，有阶段考核得分为60分以下或累计平均考核得分低于60分</li>
+              <li>公司或用人部门认为需要延长试用考核期的其它情形</li>
+            </ul>
+          </div>
+
+          <h3 class="sub-heading" id="sec-mgmt-attendance">考勤管理规定</h3>
+          <div class="callout info">
+            <span class="callout-title">上班时间</span>
+            上午 8:00 - 12:00 ｜ 午餐 12:00 - 14:00 ｜ 下午 14:00 - 18:00<br>
+            公司实行每周五天工作制或固定工时制（按岗位性质确定），实施指纹考勤。考勤结果以每天最早和最晚的指纹记录为准。
+          </div>
+
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>类型</th><th>说明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>忘刷卡</strong></td><td>员工非客观原因，当日正常出勤而未签到/签退</td></tr>
+                <tr><td><strong>补签卡</strong></td><td>因公务外出（含出差）无法在正常考勤时段返回，或因未建工号、未录入人脸、考勤机故障、手机故障等客观原因不能正常签到/签退，进行后台考勤系统补签卡</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout danger">
+            <span class="callout-title">考勤处罚规定</span>
+            <ul style="margin:4px 0 0">
+              <li>每月忘刷卡超过4次将给予行政处分"警告"</li>
+              <li>如欺骗公司，未出勤却申请补签卡的将给予行政处分"解雇"</li>
+            </ul>
+          </div>
+          <div class="callout tip">如有考勤方面相关疑惑，可企业微信联系人力资源部——何璇。</div>
+
+          <h3 class="sub-heading" id="sec-mgmt-leave">假期管理规定</h3>
+          <div class="callout info">假期管理详细规定请查阅OA系统中的《假期管理规定》文档。</div>
+
+          <h3 class="sub-heading" id="sec-mgmt-benefits">福利标准</h3>
+          <div class="callout tip">福利标准详细内容请查阅OA系统中的《福利标准》文档。</div>
+
+          <h3 class="sub-heading" id="sec-mgmt-perf">绩效管理规定</h3>
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>事项</th><th>说明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>工资条查询</strong></td><td>企业微信 → 工作台 → 海悟集团工资条 → 初始密码：123456</td></tr>
+                <tr><td><strong>问题反馈</strong></td><td>① 工资条页面点击"马上反馈"；② 向绩效薪酬组张娜/邓琪反馈</td></tr>
+                <tr><td><strong>薪酬发放</strong></td><td>每月15日发放上月薪酬，代扣缴五险一金、个税、宿舍水电等</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout danger">
+            <span class="callout-title">薪酬保密</span>
+            员工工资应严格保密，不得询问他人的工资也不得将本人工资泄露他人知晓。
+          </div>
+
+          <h3 class="sub-heading" id="sec-mgmt-discipline">员工纪律管理规定</h3>
+          <div class="callout warn">员工纪律管理规定详细内容请查阅OA系统中的《员工纪律管理制度》文档。</div>
+
+          <h3 class="sub-heading" id="sec-mgmt-talent">人才积分管理（培训发展）</h3>
+          <div class="callout info">人才积分管理详细规定请查阅OA系统相关文档。</div>
+
+          <h3 class="sub-heading" id="sec-mgmt-expense">费用管理规定</h3>
+          <p>费用管理涉及多个维度的标准，包括交通工具限额、住宿费标准、差旅伙食补助及各类时限标准。</p>
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>费用类别</th><th>说明</th></tr></thead>
+              <tbody>
+                <tr><td><strong>交通工具及限额</strong></td><td>各职级可使用的交通工具及其限额标准（详见OA）</td></tr>
+                <tr><td><strong>住宿费标准</strong></td><td>各职级酒店报销标准（详见OA）</td></tr>
+                <tr><td><strong>差旅伙食补助</strong></td><td>按标准执行（详见OA）</td></tr>
+                <tr><td><strong>各类时限标准</strong></td><td>费用报销时限要求（详见OA）</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout warn">
+            <span class="callout-title">差旅费用超标处理</span>
+            如有差旅费用超标，请提前进行邮件报备申请，邮件发至二级部门负责人、研发中心质量运营李琰盛及研发中心吕总处，同时需抄送至财务谭超及郑小红。邮件内容需描述清楚超标理由及超标金额。
+          </div>
+
+          <h3 class="sub-heading" id="sec-mgmt-invoice">发票管理规定</h3>
+          <div class="callout warn">发票管理规定详细内容请查阅OA系统相关文档。</div>
+
+          <h3 class="sub-heading" id="sec-mgmt-quick">管理制度快捷查询</h3>
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>通用管理制度</th><th>研发管理制度</th></tr></thead>
+              <tbody>
+                <tr><td>试用期管理</td><td>研发人员专业技术任职资格管理规范</td></tr>
+                <tr><td>考勤管理规定（考勤现为上午8点）</td><td>研发样机管理指引</td></tr>
+                <tr><td>假期管理规定</td><td>集成产品开发流程</td></tr>
+                <tr><td>海悟集团费用管理制度</td><td>产品软件开发规范</td></tr>
+                <tr><td>海悟集团OA费用及资产报销操作指南</td><td>工程变更程序</td></tr>
+                <tr><td>加密系统简要使用指引</td><td>—</td></tr>
+                <tr><td>人才积分管理</td><td>产品型号命名规范</td></tr>
+                <tr><td>员工激励管理</td><td>项目标的产品开发程序</td></tr>
+                <tr><td>职员晋升、晋级和加薪管理</td><td>非标产品开发程序</td></tr>
+                <tr><td>员工纪律管理</td><td>企业标准代码规范</td></tr>
+                <tr><td>OA系统五大场景操作手册</td><td>非运营商厂验操作规范</td></tr>
+                <tr><td>园区复合打印机安装方法指引</td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Section 6: 日常工作规范 ===== -->
+      <section class="doc-section" id="sec-daily">
+        <h2 onclick="toggleSection(this)"><span class="section-num">6</span>日常工作规范<span class="collapse-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span></h2>
+        <div class="section-content">
+
+          <h3 class="sub-heading" id="sec-daily-email">邮件收发要求</h3>
+          <div class="callout important">
+            <span class="callout-title">邮件规范四要点</span>
+            <ul style="margin:4px 0 0">
+              <li><strong>邮件标题：</strong>说明要做什么事，邮件目的是什么（决策/审阅/知会/求助等）；标题清晰，在原邮件上直接回复需加副标题</li>
+              <li><strong>邮件内容：</strong>简要说明什么事，具体内容要条目化，禁止没内容只有附件</li>
+              <li><strong>会议通知：</strong>明确时间/地点/会议议程及会前需准备的材料要求；有时限要求的事项需注明期望答复/截止时间</li>
+              <li><strong>会议纪要：</strong>工作跟踪类邮件，有必要需摘附件重要部分放入正文</li>
+            </ul>
+          </div>
+
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">邮件示例</span><button class="copy-btn" onclick="copyCode(this)">复制</button></div>
+            <pre><code><span class="tk-comment"># 标准邮件格式示例</span>
+<span class="tk-attr">收件人：</span>xxx@haiwu.com
+<span class="tk-attr">抄送人：</span>xxx@haiwu.com
+<span class="tk-attr">主  题：</span>[决策] 关于XXX产品方案评审 - 请于X月X日前回复
+
+<span class="tk-attr">正  文：</span>
+各位领导/同事：
+
+  关于XXX事项，具体情况如下：
+  1. 背景：XXXXXX
+  2. 方案：XXXXXX
+  3. 需要决策：XXXXXX
+
+  请于X月X日前反馈意见，谢谢！
+
+<span class="tk-attr">附  件：</span>XXX方案文档.pdf</code></pre>
+          </div>
+
+          <h3 class="sub-heading" id="sec-daily-travel">出差相关要求</h3>
+          <div class="callout info">
+            <span class="callout-title">合思商旅平台</span>
+            出差预订请使用合思商旅平台，详见使用手册。
+          </div>
+          <div class="callout warn">
+            <span class="callout-title">出差注意事项</span>
+            <ul style="margin:4px 0 0">
+              <li>出差或请假需在部门知会，并说明代理工作的同事，以便工作开展</li>
+              <li>所有出差人员必须严格遵守公司关于出差的各项要求和规定</li>
+              <li>出差期间必须及时协调各方资源高质量高效率解决客户问题</li>
+              <li>必须服从现场经理安排（若有）</li>
+              <li>必须输出出差日报及日程，以邮件形式汇报至现场经理（若有）、研发中心直接上级并抄送研发中心质量运营部</li>
+            </ul>
+          </div>
+          <div class="callout danger">
+            <span class="callout-title">差旅费用超标报备</span>
+            邮件发至：二级部门负责人、研发中心质量运营李琰盛、研发中心吕总<br>
+            抄送至：财务谭超及郑小红<br>
+            邮件内容需描述清楚超标理由及超标金额。
+          </div>
+
+          <h3 class="sub-heading" id="sec-daily-hours">研发人员工时填报要求</h3>
+          <div class="callout important">
+            <span class="callout-title">IPO合规要求</span>
+            应IPO要求，研发人员均需每周在OA系统中填写研发工时。次月初研发中心质量运营结合人力统计出勤数据进行上月研发人员工时复核。详细填写规范见附件，入职即需要填写。
+          </div>
+
+          <h3 class="sub-heading" id="sec-daily-ppt">交流PPT等资料规范要求</h3>
+
+          <h4 class="sub-sub-heading">字号与排版</h4>
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>项目</th><th>规格</th></tr></thead>
+              <tbody>
+                <tr><td>内容页标题</td><td>26号字（加粗）</td></tr>
+                <tr><td>副标题</td><td>20号字（加粗）</td></tr>
+                <tr><td>正文</td><td>16号字</td></tr>
+                <tr><td>行距</td><td>统一1.5倍</td></tr>
+                <tr><td>对齐方式</td><td>内容居中画面，图片与文本左右对齐</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout tip">公司PPT字号已经在模板中定好，没有特殊情况，请勿随意修改。</div>
+
+          <h4 class="sub-sub-heading">配色</h4>
+          <p>海悟PPT模板中已定义好公司标准色板，公司主要使用的颜色有海悟蓝/黑/白/灰，设计理念为"海悟一点蓝"。</p>
+          <div class="callout warn">
+            <span class="callout-title">配色注意事项</span>
+            <ul style="margin:4px 0 0">
+              <li>请不要过大面积使用蓝色，将蓝色作为点缀，在颜色选择上谨慎</li>
+              <li>黄色代表警告，红色代表很差/错误，原则上非必要不使用</li>
+            </ul>
+          </div>
+          <div class="card-grid">
+            <div class="info-card" style="text-align:center">
+              <div style="width:48px;height:48px;border-radius:8px;background:rgb(58,95,171);margin:0 auto 8px"></div>
+              <h4>海悟蓝</h4>
+              <p style="font-family:monospace">RGB(58, 95, 171)</p>
+            </div>
+            <div class="info-card" style="text-align:center">
+              <div style="width:48px;height:48px;border-radius:8px;background:#000;margin:0 auto 8px"></div>
+              <h4>黑</h4>
+              <p style="font-family:monospace">RGB(0, 0, 0)</p>
+            </div>
+            <div class="info-card" style="text-align:center">
+              <div style="width:48px;height:48px;border-radius:8px;background:#fff;border:1px solid #ccc;margin:0 auto 8px"></div>
+              <h4>白</h4>
+              <p style="font-family:monospace">RGB(255, 255, 255)</p>
+            </div>
+            <div class="info-card" style="text-align:center">
+              <div style="width:48px;height:48px;border-radius:8px;background:#808080;margin:0 auto 8px"></div>
+              <h4>灰</h4>
+              <p style="font-family:monospace">RGB(128, 128, 128)</p>
+            </div>
+          </div>
+
+          <h4 class="sub-sub-heading">模板</h4>
+          <div class="callout tip">公司PPT模板可在企业微信微盘中查询。</div>
+        </div>
+      </section>
+
+      <!-- ===== Section 7: 其他事项 ===== -->
+      <section class="doc-section" id="sec-other">
+        <h2 onclick="toggleSection(this)"><span class="section-num">7</span>其他事项<span class="collapse-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span></h2>
+        <div class="section-content">
+
+          <h3 class="sub-heading" id="sec-other-life">生活指引（适用于东莞园区）</h3>
+
+          <h4 class="sub-sub-heading">购物和生活</h4>
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>地点</th><th>位置</th><th>交通</th></tr></thead>
+              <tbody>
+                <tr><td>B栋楼下超市 / 园区前门对面商店</td><td>园区内</td><td>步行可达</td></tr>
+                <tr><td>樟洋社区</td><td>樟木头镇樟洋社区</td><td>步行20min / 打车5-10min（约20元来回）</td></tr>
+                <tr><td>天河city（樟木头店）</td><td>樟木头镇永宁路</td><td>打车15-25min（约40元来回）</td></tr>
+                <tr><td>天一城购物中心</td><td>樟木头镇西城路11号</td><td>打车15-25min（约40元来回）</td></tr>
+                <tr><td>天虹购物中心（塘厦店）</td><td>塘厦镇塘厦大道中38号</td><td>打车15-25min（约35元来回）</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 class="sub-sub-heading">交通指南</h4>
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>路线</th><th>时间</th><th>费用</th></tr></thead>
+              <tbody>
+                <tr><td>公司班车（周五18:00篮球场→深圳五和地铁站；周一7:00返回）</td><td>—</td><td>免费（联系人力加入班车群）</td></tr>
+                <tr><td>滴滴/顺风车 → 深圳北站</td><td>约1h</td><td>约60元</td></tr>
+                <tr><td>滴滴/顺风车 → 深圳宝安国际机场</td><td>约1h</td><td>约110元</td></tr>
+                <tr><td>园区→樟木头站（城轨）→深圳站</td><td>约40min</td><td>约40元</td></tr>
+                <tr><td>园区→东莞南站（高铁/动车）→深圳北站</td><td>约40min</td><td>约40元</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout info">
+            <span class="callout-title">假日休闲乐购专线</span>
+            樟洋工业区假日休闲乐购专线，逢周六、日及法定节假日可至海悟西北门乘坐；发车间隔75分钟；票价2元。<br>
+            <strong>线路站点：</strong>天一城 ↔ 民兴电缆公司<br>
+            <strong>天一城发车：</strong>9:00、10:15、11:30、17:30、18:45、20:00<br>
+            <strong>民兴电缆发车：</strong>9:30、10:45、12:00、18:00、19:15、20:30
+          </div>
+
+          <h4 class="sub-sub-heading">附近医疗</h4>
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>医疗机构</th><th>地址</th><th>距离</th></tr></thead>
+              <tbody>
+                <tr><td>樟洋社区卫生服务站-发热门诊</td><td>樟木头镇东深路樟木头段406号</td><td>—</td></tr>
+                <tr><td>樟木头镇社区卫生服务中心</td><td>政通路樟木头镇政府东侧约170m</td><td>5.7km</td></tr>
+                <tr><td>樟木头镇石新医院</td><td>樟木头镇石新大道南286号</td><td>3.3km</td></tr>
+                <tr><td>东莞塘厦莞华医院</td><td>塘厦镇林村塘厦大道北493号</td><td>3.8km</td></tr>
+                <tr><td>东莞三局医院</td><td>塘厦镇花园新街北10号</td><td>4.9km</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 class="sub-sub-heading">公司内部设施</h4>
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="card-icon" style="background:#fef3c7;color:#f59e0b">🍽️</div>
+              <h4>食堂</h4>
+              <p>餐补制，每月补贴至餐卡，余额不足可企业微信联系前台线上充值。用餐地点：园区食堂1楼</p>
+            </div>
+            <div class="info-card">
+              <div class="card-icon" style="background:#d1fae5;color:#10b981">💪</div>
+              <h4>健身设施</h4>
+              <p>健身房（跑步机、动感单车等）、羽毛球馆、乒乓球馆、篮球场、瑜伽室。地点：公司食堂4楼</p>
+            </div>
+            <div class="info-card">
+              <div class="card-icon" style="background:#ede9fe;color:#8b5cf6">🏠</div>
+              <h4>宿舍</h4>
+              <p>独立卫浴、空调房。职工4-6人间，职员根据职级1-4人间</p>
+            </div>
+          </div>
+
+          <h4 class="sub-sub-heading">着装要求</h4>
+          <div class="callout warn">
+            <span class="callout-title">职业形象要求</span>
+            为配合总部的工作形象，营造职业化氛围，请保持良好仪容仪表，言行举止大方得体。<br>
+            <strong>男性：</strong>建议职业装<br>
+            <strong>女性：</strong>建议职业装（不可穿短裤、超短裙、背心、吊带、拖鞋等休闲服）
+          </div>
+
+          <h4 class="sub-sub-heading">教育</h4>
+          <div class="callout tip">详情请咨询刘超（人力）。</div>
+
+          <h3 class="sub-heading" id="sec-other-worktime">上班时间</h3>
+          <div class="callout important">
+            <span class="callout-title">作息时间</span>
+            上午 8:00 - 12:00 ｜ 午餐 12:00 - 14:00 ｜ 下午 14:00 - 18:00<br>
+            公司实行每周五天工作制或固定工时制（按岗位性质确定），实施指纹考勤。请到人力资源中心办公室考勤处录取指纹。
+          </div>
+
+          <h3 class="sub-heading" id="sec-other-email">邮箱及电脑设置</h3>
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>常用工具</th><th>网址/客户端</th><th>账号</th><th>初始密码</th></tr></thead>
+              <tbody>
+                <tr><td>上网认证系统</td><td>上网认证系统</td><td>工号</td><td>123456</td></tr>
+                <tr><td>OA/PT系统</td><td>http://oa.haiwu.com</td><td>工号</td><td>123456</td></tr>
+                <tr><td>邮箱</td><td>https://mail.haiwu.com/（客户端：Foxmail）</td><td>名字全拼@haiwu.com</td><td>hw000</td></tr>
+                <tr><td>企业微信</td><td>—</td><td>—</td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout info">企业微信功能模块：员工服务、工资条、规章制度、员工关爱、活动等。</div>
+
+          <h3 class="sub-heading" id="sec-other-supplies">办公用品</h3>
+          <div class="callout info">
+            <span class="callout-title">办公用品申购流程</span>
+            如需购买办公用品，请将个人需求于每月底汇总至部门指定统筹人员（江海霞）处，由部门统一申报，公司批准后由行政统一采购并一次性发至部门。
+          </div>
+
+          <h3 class="sub-heading" id="sec-other-assets">物资领用</h3>
+          <p>公司配备办公电脑、文具及其他设备，在员工入职时交付使用，并录入资产管理系统及记入使用责任人名下。</p>
+          <div class="callout warn">
+            <span class="callout-title">资产使用须知</span>
+            <ul style="margin:4px 0 0">
+              <li>请爱护公司资产，按产品说明书或规定使用的方法使用公司设备</li>
+              <li>请勿随意调换、调用、私带外出自用</li>
+              <li>如办公设备损坏，请勿拆卸，可通知经营管理部总务行政处负责维修或更换</li>
+            </ul>
+          </div>
+
+          <h3 class="sub-heading" id="sec-other-notes">其他注意事项</h3>
+          <div class="callout danger">
+            <span class="callout-title">严格禁止事项</span>
+            <ul style="margin:4px 0 0">
+              <li>员工工资应严格保密，不得询问他人的工资也不得将本人工资泄露他人知晓</li>
+              <li>园区抽烟地点有规定，车间、办公区域不能抽烟，违者一经查实将按公司有关条例严肃处理</li>
+              <li>园区不能进行赌博、打架等违法行为</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Section 8: FAQ ===== -->
+      <section class="doc-section" id="sec-faq">
+        <h2 onclick="toggleSection(this)"><span class="section-num">8</span>常见问题 FAQ<span class="collapse-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span></h2>
+        <div class="section-content">
+
+          <h4 class="sub-sub-heading">Q1：入职后需要立即做什么？</h4>
+          <div class="callout tip">
+            <ul style="margin:0">
+              <li>到人力资源中心办公室考勤处录取指纹</li>
+              <li>领取办公电脑及办公用品（录入资产管理系统）</li>
+              <li>登录OA/PT系统修改初始密码（初始密码：123456）</li>
+              <li>设置企业邮箱（初始密码：hw000）</li>
+              <li>加入企业微信及部门相关群组</li>
+              <li>开始每周在OA系统中填写研发工时</li>
+            </ul>
+          </div>
+
+          <h4 class="sub-sub-heading">Q2：月度绩效什么时候提交？</h4>
+          <div class="callout info">每月6号前提交当月月度绩效计划表，每月20号前完成上月月度绩效评估表。每月15号后新入职员工无需填写，次月启动填写。</div>
+
+          <h4 class="sub-sub-heading">Q3：忘记打卡了怎么办？</h4>
+          <div class="callout warn">因公务外出等客观原因无法正常签到/签退的，可进行后台考勤系统补签卡。但每月忘刷卡超过4次将给予"警告"处分。欺骗公司未出勤却申请补签卡的将给予"解雇"处分。</div>
+
+          <h4 class="sub-sub-heading">Q4：如何查询公司制度文件？</h4>
+          <div class="callout tip">在OA系统搜索栏中选择"文档"，输入关键词搜索。输入"ISO9001"可查看体系文件清单；输入"RDM"可搜索研发归档文件。</div>
+
+          <h4 class="sub-sub-heading">Q5：研发工时在哪里填写？</h4>
+          <div class="callout info">应IPO要求，研发人员均需每周在OA系统中填写研发工时，入职即需要填写。详细填写规范见附件。</div>
+
+          <h4 class="sub-sub-heading">Q6：差旅费用超标如何处理？</h4>
+          <div class="callout warn">请提前进行邮件报备申请，邮件发至二级部门负责人、研发中心质量运营李琰盛及研发中心吕总处，同时抄送财务谭超及郑小红。邮件内容需描述清楚超标理由及超标金额。</div>
+
+          <h4 class="sub-sub-heading">Q7：工资条如何查询？</h4>
+          <div class="callout tip">企业微信 → 工作台 → 海悟集团工资条 → 初始密码123456。如有问题，点击工资条页面下方"马上反馈"，或向绩效薪酬组张娜/邓琪反馈。</div>
+
+          <h4 class="sub-sub-heading">Q8：如何联系各部门？</h4>
+          <div class="callout info">联系方式可上企业微信通讯录搜索查找。研发中心内部对接窗口及外部联络窗口详见本知识库第2章。</div>
+
+          <h4 class="sub-sub-heading">Q9：公司班车怎么乘坐？</h4>
+          <div class="callout tip">周五18:00在篮球场上车，18:30出发开往深圳五和地铁站；周一7:00从五和地铁站出发开往园区。请联系人力加入班车群。</div>
+
+          <h4 class="sub-sub-heading">Q10：PPT制作有什么要求？</h4>
+          <div class="callout info">使用公司PPT模板（微盘可查），标题26号字加粗，副标题20号字加粗，正文16号字，行距1.5倍。配色以海悟蓝（RGB 58,95,171）为点缀，非必要不使用黄色和红色。</div>
+        </div>
+      </section>
+
+      <!-- ===== Section 9: 联系方式 ===== -->
+      <section class="doc-section" id="sec-contact">
+        <h2 onclick="toggleSection(this)"><span class="section-num">9</span>联系方式<span class="collapse-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span></h2>
+        <div class="section-content">
+
+          <h3 class="sub-heading">常用联系人速查</h3>
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>事项</th><th>部门</th><th>联系人</th><th>负责事宜</th></tr></thead>
+              <tbody>
+                <tr><td>系统类</td><td>IT数字化处</td><td>彭春生</td><td>SAP事宜、CRM运维、OA的运维及流程配置</td></tr>
+                <tr><td>系统类</td><td>IT数字化处</td><td>赵维</td><td>MES运维</td></tr>
+                <tr><td>系统类</td><td>IT数字化处</td><td>倪雍</td><td>PDM运维、PDM账号创建</td></tr>
+                <tr><td>系统类</td><td>IT数字化处</td><td>曹翔</td><td>企业邮箱系统、桌面运维、会场设备维护、办公设备维护</td></tr>
+                <tr><td>人力及财务</td><td>绩效薪酬处</td><td>李翩</td><td>员工入转调离相关工作及OA账号创建</td></tr>
+                <tr><td>人力及财务</td><td>绩效薪酬处</td><td>何璇</td><td>员工考勤和社保相关工作</td></tr>
+                <tr><td>人力及财务</td><td>东莞行政后勤处</td><td>陈作</td><td>统筹东莞园区客情接待、行政、办公相关工作</td></tr>
+                <tr><td>人力及财务</td><td>费用会计处</td><td>郑小红</td><td>研发中心报销事宜</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout tip">
+            <span class="callout-title">温馨提示</span>
+            所有联系方式均可通过企业微信通讯录搜索查找。如有其他问题，请联系研发中心质量运营部李琰盛协调处理。
+          </div>
+
+          <div style="text-align:center;margin-top:40px;padding:24px;border-top:1px solid var(--border);color:var(--text-muted);font-size:13px">
+            <p>海悟研发中心 · 新员工入职须知知识库</p>
+            <p style="margin-top:4px">版本 V1.0 ｜ 发布日期：2026年04月01日</p>
+            <p style="margin-top:8px;font-size:12px">本文档仅供内部使用，请勿外传</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<!-- Image Zoom Overlay -->
+<div class="image-overlay" id="imageOverlay" onclick="closeImageZoom()">
+  <img id="zoomedImage" src="" alt="放大图片">
+</div>
+
+<!-- Back to Top Button -->
+<button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="返回顶部">
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script>
+// ==================== Theme Toggle ====================
+const html = document.documentElement;
+const themeToggle = document.getElementById('themeToggle');
+const iconLight = document.getElementById('iconLight');
+const iconDark = document.getElementById('iconDark');
+
+// Load saved theme
+const savedTheme = localStorage.getItem('kb-theme') || 'light';
+html.setAttribute('data-theme', savedTheme);
+updateThemeIcon(savedTheme);
+
+themeToggle.addEventListener('click', () => {
+  const current = html.getAttribute('data-theme');
+  const next = current === 'light' ? 'dark' : 'light';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('kb-theme', next);
+  updateThemeIcon(next);
+});
+
+function updateThemeIcon(theme) {
+  if (theme === 'dark') {
+    iconLight.style.display = 'none';
+    iconDark.style.display = 'block';
+  } else {
+    iconLight.style.display = 'block';
+    iconDark.style.display = 'none';
+  }
+}
+
+// ==================== Sidebar Toggle (Mobile) ====================
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
+// ==================== Nav Section Collapse ====================
+function toggleNavSection(el) {
+  el.parentElement.classList.toggle('collapsed');
+}
+
+// ==================== Section Collapse ====================
+function toggleSection(el) {
+  // Only toggle if clicking the h2 itself (not the section number)
+  el.parentElement.classList.toggle('collapsed');
+}
+
+// ==================== Scroll Spy (Active Nav Highlight) ====================
+const navItems = document.querySelectorAll('.nav-item');
+const sections = document.querySelectorAll('.doc-section, .sub-heading, .sub-sub-heading');
+
+let scrollSpySections = [];
+document.querySelectorAll('[id^="sec-"]').forEach(el => {
+  scrollSpySections.push(el);
+});
+
+function updateActiveNav() {
+  let current = '';
+  const scrollPos = window.scrollY + 100;
+
+  scrollSpySections.forEach(sec => {
+    if (sec.offsetTop <= scrollPos) {
+      current = sec.id;
+    }
+  });
+
+  if (current) {
+    navItems.forEach(item => {
+      const href = item.getAttribute('href');
+      if (href === '#' + current) {
+        item.classList.add('active');
+        // Expand parent nav section
+        const parentSection = item.closest('.nav-section');
+        if (parentSection && parentSection.classList.contains('collapsed')) {
+          parentSection.classList.remove('collapsed');
+        }
+      } else {
+        item.classList.remove('active');
+      }
+    });
+  }
+}
+
+// Throttled scroll listener
+let scrollTimer;
+window.addEventListener('scroll', () => {
+  if (scrollTimer) return;
+  scrollTimer = setTimeout(() => {
+    updateActiveNav();
+    updateBackToTop();
+    scrollTimer = null;
+  }, 50);
+});
+
+// ==================== Back to Top ====================
+const backToTopBtn = document.getElementById('backToTop');
+
+function updateBackToTop() {
+  if (window.scrollY > 300) {
+    backToTopBtn.classList.add('visible');
+  } else {
+    backToTopBtn.classList.remove('visible');
+  }
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ==================== Smooth Scroll for Nav Links ====================
+navItems.forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    const targetId = item.getAttribute('href').slice(1);
+    const target = document.getElementById(targetId);
+
+    if (target) {
+      // Expand the section if collapsed
+      const docSection = target.closest('.doc-section');
+      if (docSection && docSection.classList.contains('collapsed')) {
+        docSection.classList.remove('collapsed');
+      }
+
+      // Small delay to allow expansion
+      setTimeout(() => {
+        const offset = 80;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }, 50);
+
+      // Close sidebar on mobile
+      if (window.innerWidth <= 900) {
+        document.getElementById('sidebar').classList.remove('open');
+      }
+    }
+  });
+});
+
+// ==================== Search ====================
+const searchInput = document.getElementById('searchInput');
+const contentElements = document.querySelectorAll('.section-content p, .section-content li, .section-content td, .section-content h3, .section-content h4, .callout');
+let originalContent = new Map();
+
+// Store original HTML for restoration
+contentElements.forEach((el, i) => {
+  originalContent.set(el, el.innerHTML);
+});
+
+searchInput.addEventListener('input', (e) => {
+  const query = e.target.value.trim().toLowerCase();
+
+  if (query === '') {
+    // Restore all
+    contentElements.forEach((el, i) => {
+      const original = originalContent.get(el);
+      if (original !== undefined) {
+        el.innerHTML = original;
+      }
+      el.closest('.doc-section')?.classList.remove('collapsed');
+      el.closest('.section-content')?.querySelectorAll('.search-hidden').forEach(n => n.classList.remove('search-hidden'));
+    });
+    document.querySelectorAll('.search-hidden').forEach(el => el.classList.remove('search-hidden'));
+    return;
+  }
+
+  if (query.length < 2) return;
+
+  let firstMatch = null;
+
+  // Expand all sections for search
+  document.querySelectorAll('.doc-section.collapsed').forEach(s => s.classList.remove('collapsed'));
+
+  contentElements.forEach((el) => {
+    const original = originalContent.get(el);
+    if (original === undefined) return;
+
+    const text = el.textContent.toLowerCase();
+    if (text.includes(query)) {
+      el.classList.remove('search-hidden');
+      el.innerHTML = highlightText(original, query);
+
+      if (!firstMatch) {
+        firstMatch = el;
+      }
+    } else {
+      // Check if element has highlighted children - if not, hide
+      el.classList.add('search-hidden');
+      el.innerHTML = original;
+    }
+  });
+
+  // Show parents of visible elements
+  document.querySelectorAll('.search-hidden').forEach(el => {
+    // Check if any child is not hidden
+  });
+
+  // Unhide parents that contain matches
+  document.querySelectorAll('.section-content').forEach(container => {
+    const hasVisible = Array.from(container.children).some(child =>
+      !child.classList.contains('search-hidden') && child.textContent.trim() !== ''
+    );
+    const allChildren = container.querySelectorAll('p, li, td, h3, h4, .callout, .table-wrapper, .code-block, .diagram-container, .card-grid');
+    const visibleChildren = Array.from(allChildren).filter(c => !c.classList.contains('search-hidden'));
+
+    if (visibleChildren.length > 0) {
+      container.closest('.doc-section')?.classList.remove('search-hidden');
+    }
+  });
+
+  // Scroll to first match
+  if (firstMatch) {
+    setTimeout(() => {
+      const offset = 80;
+      const top = firstMatch.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }, 100);
+  }
+});
+
+function highlightText(html, query) {
+  // Escape regex special chars
+  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const regex = new RegExp('(' + escaped + ')', 'gi');
+
+  // Only highlight in text nodes, not in HTML tags
+  return html.replace(/<(?:[^>"]|"[^"]*")*>|([^<]+)/g, (match, text) => {
+    if (text) {
+      return text.replace(regex, '<span class="search-highlight">$1</span>');
+    }
+    return match;
+  });
+}
+
+// ==================== Ctrl+F Focus Search ====================
+document.addEventListener('keydown', (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+    e.preventDefault();
+    searchInput.focus();
+    searchInput.select();
+  }
+});
+
+// ==================== Image Zoom ====================
+document.querySelectorAll('.img-container img').forEach(img => {
+  img.addEventListener('click', () => {
+    const overlay = document.getElementById('imageOverlay');
+    const zoomed = document.getElementById('zoomedImage');
+    zoomed.src = img.src;
+    overlay.classList.add('active');
+  });
+});
+
+function closeImageZoom() {
+  document.getElementById('imageOverlay').classList.remove('active');
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeImageZoom();
+  }
+});
+
+// ==================== Copy Code ====================
+function copyCode(btn) {
+  const code = btn.closest('.code-block').querySelector('code').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    const original = btn.textContent;
+    btn.textContent = '已复制 ✓';
+    setTimeout(() => { btn.textContent = original; }, 2000);
+  });
+}
+
+// ==================== Auto Number Sub-headings ====================
+document.querySelectorAll('.doc-section').forEach((section, sIndex) => {
+  const h3s = section.querySelectorAll('.sub-heading');
+  h3s.forEach((h3, hIndex) => {
+    // Already has nav numbering, no need to re-add
+  });
+});
+
+// ==================== Init ====================
+updateActiveNav();
+updateBackToTop();
+
+// Close sidebar when clicking outside on mobile
+document.addEventListener('click', (e) => {
+  const sidebar = document.getElementById('sidebar');
+  const menuBtn = document.querySelector('.mobile-menu-btn');
+  if (window.innerWidth <= 900 && sidebar.classList.contains('open')) {
+    if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+      sidebar.classList.remove('open');
+    }
+  }
+});
+</script>
+
+</body>
+</html>
